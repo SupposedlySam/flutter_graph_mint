@@ -93,7 +93,10 @@ class MyHomePage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final repository = repositories[index];
 
-                  return Text(repository['id']);
+                  return ListTile(
+                    leading: FlutterLogo(),
+                    title: Text(repository["id"]),
+                  );
                 });
           },
         ),
