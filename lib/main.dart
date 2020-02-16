@@ -107,8 +107,8 @@ class MyHomePage extends StatelessWidget {
                   return ListTile(
                       leading: FlutterLogo(),
                       title: Text(repository["name"]),
-                      subtitle: Text("Underlying ETH Price:" +
-                          repository['underlyingPrice']));
+                      subtitle: Text("supply interest rate (APR):" +
+                          repository['supplyRate']));
                 });
           },
         ),
