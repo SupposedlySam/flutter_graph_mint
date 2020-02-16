@@ -4,7 +4,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   final HttpLink link = HttpLink(
-    uri: 'https://api.thegraph.com/subgraphs/name/aave/protocol',
+    uri: 'https://api.thegraph.com/subgraphs/name/graphprotocol/compound-v2',
   );
 
   ValueNotifier<GraphQLClient> client = ValueNotifier(
@@ -44,19 +44,25 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final readRepositories = '''
     {
-      lendingPoolConfigurationHistoryItems(first: 5) {
+      markets(orderBy: name, orderDirection: desc) {
+        borrowRate
+        cash
+        collateralFactor
+        exchangeRate
+        interestRateModelAddress
+        name
+        reserves
+        supplyRate
+        symbol
         id
-        provider {
-          id
-        }
-        lendingPool
-        lendingPoolCore
-      }
-      lendingPoolConfigurations(first: 5) {
-        id
-        lendingPool
-        lendingPoolCore
-        lendingPoolParametersProvider
+        totalBorrows
+        totalSupply
+        underlyingAddress
+        underlyingName
+        underlyingPrice
+        underlyingSymbol
+        reserveFactor
+        underlyingPriceUSD
       }
     }
     ''';
@@ -85,8 +91,11 @@ class MyHomePage extends StatelessWidget {
             }
 
             // it can be either Map or List
-            List repositories =
-                result.data['lendingPoolConfigurationHistoryItems'];
+            List repositories = result.data['markets'];
+
+            if (repositories == 'undefined') {
+              return Text("no results found");
+            }
 
             return ListView.builder(
                 itemCount: repositories.length,
@@ -94,9 +103,10 @@ class MyHomePage extends StatelessWidget {
                   final repository = repositories[index];
 
                   return ListTile(
-                    leading: FlutterLogo(),
-                    title: Text(repository["id"]),
-                  );
+                      leading: FlutterLogo(),
+                      title: Text(repository["name"]),
+                      subtitle: Text("Underlying ETH Price:" +
+                          repository['underlyingPrice']));
                 });
           },
         ),
