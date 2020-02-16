@@ -26,11 +26,13 @@ class MyApp extends StatelessWidget {
     return GraphQLProvider(
       client: client,
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'The Graph on Flutter',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MyHomePage(title: 'Flutter Demo Home Page'),
+            primaryColor: Color.fromARGB(255, 252, 80, 144),
+            primaryColorBrightness: Brightness.dark,
+            accentColor: Color.fromARGB(255, 61, 40, 107),
+            accentColorBrightness: Brightness.dark),
+        home: MyHomePage(title: 'THE GRAPH ON FLUTTER'),
       ),
     );
   }
