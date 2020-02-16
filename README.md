@@ -1,6 +1,6 @@
-# flutter_graph_mint
+# The Graph on Flutter: find out the interest you could make from your crypto
 
-A new Flutter project.
+Mobile apps can use leverage subgraphs too! We wanted to show other developers that a flutter application can use The Graph to query subgraphs just like a Gatsby.js / React.js can. We used the Compound subgraph to display a list of supply rates per cToken markets. Given more time we could see the potential for adding notifications when supply rates change using graphql subscriptions. Beyond that we also want to add sign-in capabilities on the app with wallet authentication so we could query data based on the signed in users account. Thanks for the great tools, inspiration, and help during this fun BUIDLathon.
 
 ## Getting Started
 
